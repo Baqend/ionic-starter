@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ message?.name }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-left>
+        <img [src]="message?.face.url">
+      </ion-avatar>
+      <h2>{{ message?.name }}</h2>
+      <p>{{ message?.text }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
