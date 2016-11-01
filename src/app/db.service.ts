@@ -1,27 +1,16 @@
 import {Injectable} from "@angular/core";
-import { default as db } from "baqend";
+import { EntityManagerFactory } from "baqend";
 import { Storage } from "@ionic/storage";
+import {util} from 'baqend';
 
-let TokenStorage = db.util.TokenStorage;
 
-export class DeviceStorage extends TokenStorage {
+export class DeviceStorage extends util.TokenStorage {
 
-  static create(origin, storage) {
-    return storage.get(origin).then(function(token) {
-      return token;
-    }, function() {
-      //if the key is not found an error is thrown
-      return null;
-    }).then(function(token) {
-      return new DeviceStorage(origin, token);
-    });
-  }
-
-  constructor(private origin, private token) {
+  constructor(origin, token, private storage) {
     super(origin, token);
   }
 
-  _saveToken = function(origin, token) {
+  _saveToken(origin, token, temporary) {
     if (token) {
       this.storage.set(origin, token);
     }
@@ -34,9 +23,11 @@ export class DBReady {
   db: any;
 
   constructor(private storage: Storage) {
-    let emf = new db.EntityManagerFactory({tokenStorageFactory: {
+    let emf = new EntityManagerFactory({tokenStorageFactory: {
       create: origin => {
-        return DeviceStorage.create(origin, this.storage)
+        return storage.get(origin).then((token) => {
+          return new DeviceStorage(origin, token, storage);
+        })
       }
     }});
 
