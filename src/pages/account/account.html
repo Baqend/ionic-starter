@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Account
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="user" *ngIf="!db.User.me">
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <button ion-button margin (click)="register()" [disabled]="!user.valid">Register</button>
+      <button ion-button margin (click)="login()" [disabled]="!user.valid">Login</button>
+    </form>
+
+    <ion-item *ngIf="db.User.me">
+      Hello {{db.User.me.username}}
+      <button ion-button item-right (click)="logout()">
+        Logout
+      </button>
+    </ion-item>
+
+</ion-content>

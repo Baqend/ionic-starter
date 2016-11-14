@@ -17,7 +17,7 @@ export class ChatsPage {
   constructor(private ready:DBReady, private navCtrl: NavController) {}
 
   openChat(chat) {
-    this.navCtrl.push(ChatPage, { id: chat.key })
+    this.navCtrl.push(ChatPage, { id: chat.key });
   }
 
   ionViewCanEnter(): Promise<baqend> {

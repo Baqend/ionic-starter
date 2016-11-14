@@ -13,6 +13,8 @@ export class DeviceStorage extends util.TokenStorage {
   _saveToken(origin, token, temporary) {
     if (token) {
       this.storage.set(origin, token);
+    } else {
+      this.storage.remove(origin);
     }
   };
 
@@ -23,6 +25,8 @@ export class DBReady {
   db: any;
 
   constructor(private storage: Storage) {
+    let appName = "app-starter";
+
     let emf = new EntityManagerFactory({tokenStorageFactory: {
       create: origin => {
         return storage.get(origin).then((token) => {
@@ -32,7 +36,9 @@ export class DBReady {
     }});
 
     this.db = emf.createEntityManager(true);
-    emf.connect("app-starter", true);
+
+    // Change the name to your Baqend instance name
+    emf.connect(appName, true);
   }
 
 
