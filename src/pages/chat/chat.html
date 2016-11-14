@@ -10,7 +10,7 @@
   <ion-list>
     <ion-item>
       <ion-avatar item-left>
-        <img [src]="message?.face.url">
+        <img *ngIf="message" [src]="getImageUrl(message)">
       </ion-avatar>
       <h2>{{ message?.name }}</h2>
       <p>{{ message?.text }}</p>

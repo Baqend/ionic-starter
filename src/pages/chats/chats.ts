@@ -20,6 +20,10 @@ export class ChatsPage {
     this.navCtrl.push(ChatPage, { id: chat.key });
   }
 
+  getImageUrl(msg) {
+    return new this.db.File(msg.face).url;
+  }
+
   ionViewCanEnter(): Promise<baqend> {
     // Check if the Baqend SDK is ready and wait for initialization
     return this.ready.resolve().then(db => this.db = db);
@@ -29,13 +33,7 @@ export class ChatsPage {
     // load all messages when entering the chats view
     this.db.Message
       .find()
-      .resultList(message => this.messages = message)
-      .then(() => {
-        this.messages.forEach(msg => {
-          // convert url to file object
-          msg.face = new this.db.File(msg.face);
-        });
-      });
+      .resultList(message => this.messages = message);
   }
 
 }
