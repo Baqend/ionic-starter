@@ -1,4 +1,5 @@
-!["Logo"](https://cdn.rawgit.com/Baqend/ionic2-starter/master/ionic_baqend.png)
+!["Logo"](https://github.com/Baqend/ionic2-starter/raw/master/ionic_baqend.png)
+
 
 # Ionic 2 and Baqend Starter
 
