@@ -1,6 +1,5 @@
 {
-  "name": "ionic2-starter",
+  "name": "ionic-starter",
   "app_id": "",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

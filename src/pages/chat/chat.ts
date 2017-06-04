@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { baqend, model } from "baqend";
-import { DBReady } from "../../app/db.service";
+import { DBReady } from '../../app/db.service';
 
 @Component({
   selector: 'page-chat',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import {baqend, model} from "baqend";
-import {DBReady} from "../../app/db.service";
-import {NavController} from "ionic-angular";
-import {ChatPage} from "../chat/chat";
+import { baqend, model } from 'baqend';
+import { DBReady } from '../../app/db.service';
+import { NavController } from 'ionic-angular';
+import { ChatPage } from '../chat/chat';
 
 @Component({
   selector: 'page-chats',
@@ -14,7 +14,8 @@ export class ChatsPage {
   db: baqend;
   messages: Array<model.Message>;
 
-  constructor(private ready:DBReady, private navCtrl: NavController) {}
+  constructor(private ready: DBReady, private navCtrl: NavController) {
+  }
 
   openChat(chat) {
     this.navCtrl.push(ChatPage, { id: chat.key });

@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from '@angular/core';
 import { EntityManagerFactory } from "baqend";
-import { Storage } from "@ionic/storage";
-import {util} from 'baqend';
+import { Storage } from '@ionic/storage';
+import { util } from 'baqend';
 
 
 export class DeviceStorage extends util.TokenStorage {

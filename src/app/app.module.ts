@@ -5,9 +5,11 @@ import { ChatsPage } from '../pages/chats/chats';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DBReady } from './db.service';
-import {ChatPage} from "../pages/chat/chat";
-import { Storage } from '@ionic/storage';
-import {AccountPage} from '../pages/account/account';
+import { ChatPage } from '../pages/chat/chat';
+import { IonicStorageModule } from '@ionic/storage';
+import { AccountPage } from '../pages/account/account';
+import { BrowserModule } from '@angular/platform-browser';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {AccountPage} from '../pages/account/account';
     AccountPage,
   ],
   imports: [
+    BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -30,6 +34,9 @@ import {AccountPage} from '../pages/account/account';
     TabsPage,
     AccountPage
   ],
-  providers: [DBReady, Storage]
+  providers: [
+    DBReady,
+    StatusBar
+  ]
 })
 export class AppModule {}
