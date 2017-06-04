@@ -1,9 +1,9 @@
 [!["Logo"](https://github.com/Baqend/ionic2-starter/raw/master/ionic_baqend.png)](https://www.baqend.com)
 
 
-# Ionic 2 and Baqend Starter
+# Ionic and Baqend Starter
 
-With this Ionic 2 and [Baqend](https://www.baqend.com) starter kit you can build **blazingly fast hybrid apps** in no time.
+With this Ionic and [Baqend](https://www.baqend.com) starter kit you can build **blazingly fast hybrid apps** in no time.
 
 This starter is based on the [Ionic2-Tabs-Starter](https://github.com/driftyco/ionic2-starter-tabs).
 
