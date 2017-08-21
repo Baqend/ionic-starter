@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { baqend } from 'baqend';
-import { DBReady } from '../../app/db.service';
+import {baqend, db} from 'baqend';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 
@@ -11,10 +10,10 @@ import { ToastController } from 'ionic-angular';
 })
 export class AccountPage {
 
-  db: baqend;
+  db: baqend = db;
   user: FormGroup;
 
-  constructor(private ready:DBReady, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.user = this.formBuilder.group({
       name: ['', Validators.required],
       password: ['', Validators.required],
@@ -31,20 +30,15 @@ export class AccountPage {
   }
 
   register() {
-    this.db.User.register(this.user.value.name, this.user.value.password).catch(this.showErrorToast.bind(this));
+    db.User.register(this.user.value.name, this.user.value.password).catch(this.showErrorToast.bind(this));
   }
 
   login() {
-    this.db.User.login(this.user.value.name, this.user.value.password).catch(this.showErrorToast.bind(this));
+    db.User.login(this.user.value.name, this.user.value.password).catch(this.showErrorToast.bind(this));
   }
 
   logout() {
-    this.db.User.logout();
-  }
-
-  ionViewCanEnter(): Promise<boolean> {
-    // Check if the Baqend SDK is ready and wait for initialization
-    return this.ready.resolve().then(db => this.db = db);
+    db.User.logout();
   }
 
 }

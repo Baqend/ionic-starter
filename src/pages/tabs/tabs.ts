@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { ChatsPage } from '../chats/chats';
 import { AccountPage } from '../account/account';
+import { DBReady } from "../../app/db.service";
 
 
 @Component({
@@ -15,6 +16,11 @@ export class TabsPage {
   tab2Root: any = ChatsPage;
   tab3Root: any = AccountPage;
 
-  constructor() {}
+  constructor(private ready: DBReady) {}
 
+  ionViewCanEnter() {
+    // Check if the Baqend SDK is ready and wait for initialization
+
+    return this.ready.resolve();
+  }
 }

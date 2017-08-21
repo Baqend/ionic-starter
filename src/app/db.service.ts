@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { EntityManagerFactory } from "baqend";
 import { Storage } from '@ionic/storage';
-import { util } from 'baqend';
+import { util, db } from 'baqend';
 
 
 export class DeviceStorage extends util.TokenStorage {
@@ -22,12 +21,10 @@ export class DeviceStorage extends util.TokenStorage {
 
 @Injectable()
 export class DBReady {
-  db: any;
-
   constructor(private storage: Storage) {
     let appName = "app-starter";
 
-    let emf = new EntityManagerFactory({tokenStorageFactory: {
+    db.configure({tokenStorageFactory: {
       create: origin => {
         return storage.get(origin).then((token) => {
           return new DeviceStorage(origin, token, storage);
@@ -35,15 +32,13 @@ export class DBReady {
       }
     }});
 
-    this.db = emf.createEntityManager(true);
-
     // Change the name to your Baqend instance name
-    emf.connect(appName, true);
+    db.connect(appName, true);
   }
 
 
   resolve(): Promise<any> {
-    return this.db.ready();
+    return db.ready();
   }
 }
 
